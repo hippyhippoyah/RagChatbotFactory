@@ -10,7 +10,29 @@ data "aws_ecr_repository" "rag_ecr" {
   name = "lambda-rag-ecr"
 }
 
-//lambda function
+data "aws_ecr_repository" "rag_ecr_data_repo" {
+  name = "rag-lambda-data-repo"
+}
+
+//lambda function data response generator
+resource "aws_lambda_function" "rag_res_data_gen" {
+  function_name = "rag-res-data-gen"
+  memory_size = 500
+  role          = aws_iam_role.rag_res_gen.arn
+  timeout       = 5
+  image_uri = "${data.aws_ecr_repository.rag_ecr_data_repo.repository_url}:${var.env_name}"
+  package_type = "Image"
+
+    environment {
+        variables = {
+        OPENAI_API_KEY = var.openai_api_key
+        PINECONE_API_KEY = var.pinecone_api_key
+        PINECONE_INDEX_NAME = var.pinecone_index_name
+        }
+    }
+}
+
+//lambda function data response
 resource "aws_lambda_function" "rag_res_gen" {
   function_name = "rag-res-gen"
   memory_size = 500
@@ -62,7 +84,6 @@ resource "aws_apigatewayv2_stage" "rag_res_gen" {
     auto_deploy = true
 }
 
-//EXPLAIN THIS
 resource "aws_apigatewayv2_integration" "rag_res_gen" {
   api_id = aws_apigatewayv2_api.rag_res_gen.id
   integration_type = "AWS_PROXY"

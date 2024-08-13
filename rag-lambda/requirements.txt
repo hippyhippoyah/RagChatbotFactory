@@ -1,6 +1,4 @@
 # Todo: Automatically package these dependencies
-openai 
-langchain
 langchain-openai
 langchain-pinecone
 pinecone

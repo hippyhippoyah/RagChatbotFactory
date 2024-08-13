@@ -23,24 +23,20 @@ def main(event, context):
     question = body.get("prompt", "No prompt provided")
     
     load_dotenv(override=True)
-    print("debug0")
 
+    # Better to use AWS secretmanager for storing secrets but for this example we will use env variables
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
     model = ChatOpenAI(openai_api_key=OPENAI_API_KEY, model="gpt-3.5-turbo")
     parser = StrOutputParser()
     chain = model | parser
-    print("debug0.5: " + question)
 
     embeddings = OpenAIEmbeddings()
 
     query_vector = embeddings.embed_query(question)
-    print("debug0.6")
     pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
     index = pc.Index(os.getenv("PINECONE_INDEX_NAME"))
-    print("debug0.7")
     vector_store = PineconeVectorStore(index=index, embedding=OpenAIEmbeddings())
-    print("debug1")
 
     pinecone_data = vector_store.max_marginal_relevance_search_by_vector(embedding=query_vector, k=2)
     # print(pinecone_data)
@@ -54,7 +50,6 @@ def main(event, context):
 
     Question: {question}
     """
-    print("debug2")
 
     output = chain.invoke(question)
     print(output)
