@@ -4,4 +4,6 @@
 .terraform
 READMEPRIVATE.md
 .venv
+credentials.json
+token.json
 

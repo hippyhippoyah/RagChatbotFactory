@@ -1,4 +1,8 @@
-langchain-community
+langchain-google-community[drive]
+drive
 langchain-openai
 python-dotenv
 langchain_pinecone
+langchain-text-splitter
+langchain_community
+pinecone
