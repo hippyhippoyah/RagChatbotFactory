@@ -1,6 +1,7 @@
-# Rag Response Generator
+# RAG Chatbot Factory
 
-A powerful tool for generating human-like responses using Retrival Augmented Generation from pinecone. Containarized and auto deployment with terrform. 
+A powerful tool for generating chatbot using Retrieval Augmented Generation from pinecone. Containerized and auto-deployment to aws with terraform. 
+
 
 ## Overview
 
@@ -40,11 +41,16 @@ This project leverages the capabilities of Pinecone, LangChain, Terraform, AWS, 
 ## Setup
 
 1. Clone the repository: `git clone https://github.com/your-repo/rag-response-generator.git`
-2. cd into data lambda and run ```make docker/push TAG=dev
-3. cd into rag lambda and run ```make docker/push TAG=dev
-4. return to root directory and run (may have to login to terraform before) ```terraform apply
-5. Test bot with data
+2. Create private ECR repositories rag-res-data-gen, and `rag-res-gen`
+3. cd into data lambda and run `make docker/push TAG=dev`
+4. cd into rag lambda and run `make docker/push TAG=dev`
+5. return to root directory and run (may have to login to terraform before) `terraform apply`
+
+## Issues
+Any issues are likely do to the Prerequisites setup. 
 
 ## Contributing
 
 Contributions are welcome! Please fork with your contribution!
+
+## It is still a WIP (sorry this readme might not be the best)
