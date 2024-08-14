@@ -19,6 +19,13 @@ variable "pinecone_api_key" {
     default = "1234567890"
 }
 
+variable "google_application_credentials" {
+  description = "google application credentials."
+
+  type    = string
+  default = ""
+}
+
 variable "pinecone_index_name" {
   description = "pinecone index name."
 

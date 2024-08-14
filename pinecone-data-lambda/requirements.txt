@@ -1,8 +1,8 @@
-langchain-google-community[drive]
-drive
+drive==0.4.4
+langchain-google-community[drive]==1.0.7
 langchain-openai
 python-dotenv
 langchain_pinecone
-langchain-text-splitter
+langchain-text-splitters
 langchain_community
 pinecone

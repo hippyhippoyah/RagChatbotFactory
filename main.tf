@@ -28,6 +28,7 @@ resource "aws_lambda_function" "rag_res_data_gen" {
         OPENAI_API_KEY = var.openai_api_key
         PINECONE_API_KEY = var.pinecone_api_key
         PINECONE_INDEX_NAME = var.pinecone_index_name
+        GOOGLE_APPLICATION_CREDENTIALS = var.google_application_credentials
         }
     }
 }
@@ -95,6 +96,19 @@ resource "aws_apigatewayv2_route" "rag_res_gen" {
   api_id = aws_apigatewayv2_api.rag_res_gen.id
   route_key = "POST /prompt"
     target = "integrations/${aws_apigatewayv2_integration.rag_res_gen.id}"
+}
+
+resource "aws_apigatewayv2_integration" "rag_data_res_gen" {
+  api_id = aws_apigatewayv2_api.rag_res_gen.id
+  integration_type = "AWS_PROXY"
+  integration_method = "POST"
+  integration_uri = aws_lambda_function.rag_res_data_gen.invoke_arn
+}
+
+resource "aws_apigatewayv2_route" "rag_data_res_gen" {
+  api_id = aws_apigatewayv2_api.rag_res_gen.id
+  route_key = "POST /data"
+    target = "integrations/${aws_apigatewayv2_integration.rag_data_res_gen.id}"
 }
 
 resource "aws_lambda_permission" "rag_res_gen" {

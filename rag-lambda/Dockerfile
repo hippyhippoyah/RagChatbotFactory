@@ -3,7 +3,7 @@ FROM amazon/aws-lambda-python:3.8
 # from your project folder.
 
 COPY requirements.txt  .
-RUN  pip3 install -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
+RUN  pip3 install --no-cache-dir -r requirements.txt --target "${LAMBDA_TASK_ROOT}"
 
 # Copy function code
 COPY rag_compute.py ${LAMBDA_TASK_ROOT}
