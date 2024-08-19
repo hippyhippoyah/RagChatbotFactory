@@ -1,6 +1,6 @@
 # RAG Chatbot Factory
 
-A powerful tool for generating chatbot using Retrieval Augmented Generation from pinecone. Containerized and auto-deployment to aws with terraform. 
+A tool for generating chatbot using Retrieval Augmented Generation from pinecone. Containerized and auto-deployment to aws with terraform. 
 
 
 ## Overview
@@ -54,3 +54,5 @@ Any issues are likely do to the Prerequisites setup.
 Contributions are welcome! Please fork with your contribution!
 
 ## It is still a WIP (sorry this readme might not be the best)
+
+Important items such as moving out of environment variables and putting into AWS secrets is important for actual deployment. This is just a working basic product. 
