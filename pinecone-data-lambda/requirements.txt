@@ -4,3 +4,5 @@ langchain_pinecone
 langchain-text-splitters
 langchain_community
 pinecone
+google-auth
+google-api-python-client

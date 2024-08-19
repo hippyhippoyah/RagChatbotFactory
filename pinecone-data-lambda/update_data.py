@@ -63,7 +63,8 @@ def main(event, context):
         print(f"Deleting document ID: {doc.id}")
         index.delete(doc.id)
 
-    # Store the new documents in Pinecone
+    # Store the new documents in Pinecone: NOTE, this currently does not work because of AWS not supporting multithreading with parallel processing, 
+    # If there is a fix, let me know. 
     pinecone_vector_store = PineconeVectorStore.from_documents(
         documents, embeddings, index_name=index_name
     )
@@ -71,4 +72,5 @@ def main(event, context):
 
     return {"message": "Data updated successfully!"}
 
-main(None, None)
+
+# main(None, None)

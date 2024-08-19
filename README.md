@@ -56,3 +56,5 @@ Contributions are welcome! Please fork with your contribution!
 ## It is still a WIP (sorry this readme might not be the best)
 
 Important items such as moving out of environment variables and putting into AWS secrets is important for actual deployment. This is just a working basic product. 
+
+AWS does not support multithreading to Pinecone.from_documents does not work currently in lambda. 
