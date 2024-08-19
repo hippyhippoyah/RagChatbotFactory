@@ -1,5 +1,5 @@
 drive==0.4.4
-langchain-google-community[drive]==1.0.7
+google-api-python-client
 langchain-openai
 python-dotenv
 langchain_pinecone
